@@ -1,0 +1,8 @@
+object FormClientes: TFormClientes
+  Left = 256
+  Height = 240
+  Top = 145
+  Width = 320
+  Caption = 'Cadastro de Clientes'
+  LCLVersion = '3.8.0.0'
+end
