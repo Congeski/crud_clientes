@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  Buttons, StdCtrls, DBGrids, unitDM, minhas_funcoes;
+  Buttons, StdCtrls, DBGrids, unitDM, minhas_funcoes, LCLType;
 
 type
 
@@ -34,6 +34,9 @@ type
     Panel1: TPanel;
     TabArquivo: TTabSheet;
     TabDados: TTabSheet;
+    procedure btCancelarClick(Sender: TObject);
+    procedure btGravarClick(Sender: TObject);
+    procedure btIncluirClick(Sender: TObject);
     procedure btSairClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -42,6 +45,7 @@ type
     procedure HabilitarCampos(valor:Boolean);
     procedure Hab_botoes(Sender:TObject);
     procedure Desab_botoes(Sender:TObject);
+    procedure TabArquivoShow(Sender: TObject);
   private
 
   public
@@ -64,6 +68,51 @@ begin
   FormClientes.Close;
 end;
 
+procedure TFormClientes.btIncluirClick(Sender: TObject);
+begin
+  TabArquivo.TabVisible:= false;
+  TabDados.TabVisible:= true;
+  pagina1.ActivePage:= (TabDados);
+  situacao:= 1;
+  LimpaCampos;
+  HabilitarCampos(true);
+  Desab_botoes(FormClientes);
+
+  EditNome.SetFocus;
+end;
+
+procedure TFormClientes.btCancelarClick(Sender: TObject);
+begin
+  TabArquivo.TabVisible:= true;
+  pagina1.ActivePage:= (TabArquivo);
+  TabArquivo.SetFocus;
+  Hab_botoes(FormClientes);
+  HabilitarCampos(false);
+end;
+
+procedure TFormClientes.btGravarClick(Sender: TObject);
+begin
+  if Application.MessageBox('Confirma a Inclusão deste Cliente?',
+  'Confirmação', Mb_YesNo + MB_ICONINFORMATION) = idyes then
+  begin
+    case situacao of
+    1: // incluir novo registro
+      begin
+        incluir_cliente(DM.ZQueryAux, EditNome.Text, EditEndereco.Text,
+                         EditCidade.Text, ComboBoxUF.Text);
+      end;
+    end; //case
+  end; //if
+
+  TabDados.TabVisible:= true;
+  TabArquivo.TabVisible:= true;
+  pagina1.ActivePage:= (TabArquivo);
+  TabArquivo.SetFocus;
+  Hab_botoes(FormClientes);
+  HabilitarCampos(false);
+  situacao:= -1;
+end;
+
 procedure TFormClientes.FormActivate(Sender: TObject);
 begin
   Hab_botoes(FormClientes);
@@ -76,6 +125,7 @@ end;
 
 procedure TFormClientes.FormShow(Sender: TObject);
 begin
+  situacao:= -1;
   try
     exibir_clientes(DM.ZQueryClientes);
   except
@@ -119,6 +169,16 @@ begin
   btCancelar.Enabled:= true;
   btGravar.Enabled:= true;
   btSair.Enabled:= false;
+end;
+
+procedure TFormClientes.TabArquivoShow(Sender: TObject);
+begin
+  try
+    exibir_clientes(DM.ZQueryClientes);
+  except
+    ShowMessage('Erro ao acessar o banco de dados!');
+    Exit;
+  end;
 end;
 
 end.

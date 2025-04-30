@@ -12,8 +12,10 @@ type
   { TDM }
 
   TDM = class(TDataModule)
+    DataSourceAux: TDataSource;
     DataSourceClientes: TDataSource;
     ZConnection1: TZConnection;
+    ZQueryAux: TZQuery;
     ZQueryClientes: TZQuery;
   private
 

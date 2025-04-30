@@ -2,13 +2,13 @@ object FormClientes: TFormClientes
   Left = 308
   Height = 283
   Top = 226
-  Width = 533
+  Width = 687
   Align = alCustom
   BorderIcons = []
   BorderStyle = bsSingle
   Caption = 'Cadastro de Clientes'
   ClientHeight = 283
-  ClientWidth = 533
+  ClientWidth = 687
   OnActivate = FormActivate
   OnCreate = FormCreate
   OnShow = FormShow
@@ -17,10 +17,10 @@ object FormClientes: TFormClientes
     Left = 0
     Height = 57
     Top = 226
-    Width = 533
+    Width = 687
     Align = alBottom
     ClientHeight = 57
-    ClientWidth = 533
+    ClientWidth = 687
     Color = clTeal
     ParentBackground = False
     ParentColor = False
@@ -67,6 +67,7 @@ object FormClientes: TFormClientes
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000953D0C43FADF7F92982EDEE103AEA1F00000000
       }
+      OnClick = btIncluirClick
       TabOrder = 0
     end
     object btAlterar: TBitBtn
@@ -199,6 +200,7 @@ object FormClientes: TFormClientes
         F4D6393CF5D21C15F1AB0D03F10B000000000000000000000000000000000000
         000000000000000000000600F01C1109F0682728F1B61F1EF2A7
       }
+      OnClick = btCancelarClick
       TabOrder = 3
     end
     object btGravar: TBitBtn
@@ -243,6 +245,7 @@ object FormClientes: TFormClientes
         00000000000000000000004E0048006800980F701FE91E812EF41E812EF40F70
         1FE900680098004E004800000000000000000000000000000000
       }
+      OnClick = btGravarClick
       TabOrder = 4
     end
     object btSair: TBitBtn
@@ -287,33 +290,65 @@ object FormClientes: TFormClientes
     Left = 0
     Height = 226
     Top = 0
-    Width = 533
+    Width = 687
     ActivePage = TabArquivo
     Align = alClient
-    Enabled = False
     TabIndex = 0
     TabOrder = 1
     object TabArquivo: TTabSheet
       Caption = 'Arquivo'
       ClientHeight = 198
-      ClientWidth = 525
+      ClientWidth = 679
       OnShow = TabArquivoShow
       object DBGrid1: TDBGrid
         Left = 0
         Height = 198
         Top = 0
-        Width = 525
+        Width = 679
         Align = alClient
         Color = clWindow
-        Columns = <>
+        Columns = <        
+          item
+            MinSize = 200
+            Title.Caption = 'ID'
+            Width = 45
+            FieldName = 'ID'
+          end        
+          item
+            MinSize = 10
+            MaxSize = 200
+            Title.Caption = 'Nome'
+            Width = 150
+            FieldName = 'NOME'
+          end        
+          item
+            MinSize = 10
+            MaxSize = 200
+            Title.Caption = 'Endereço'
+            Width = 200
+            FieldName = 'ENDERECO'
+          end        
+          item
+            MaxSize = 200
+            Title.Caption = 'Cidade'
+            Width = 200
+            FieldName = 'CIDADE'
+          end        
+          item
+            MaxSize = 200
+            Title.Caption = 'UF'
+            Width = 50
+            FieldName = 'ESTADO'
+          end>
         DataSource = DM.DataSourceClientes
+        ReadOnly = True
         TabOrder = 0
       end
     end
     object TabDados: TTabSheet
       Caption = 'Dados do Cliente'
       ClientHeight = 198
-      ClientWidth = 525
+      ClientWidth = 679
       object Label1: TLabel
         Left = 40
         Height = 15

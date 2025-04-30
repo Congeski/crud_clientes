@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="29"/>
       </Unit>
       <Unit>
         <Filename Value="unitprincipal.pas"/>
@@ -23,7 +23,7 @@
         <UnitName Value="unitPrincipal"/>
         <TopLine Value="10"/>
         <CursorPos X="22" Y="40"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -36,9 +36,8 @@
         <UnitName Value="unitClientes"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="56"/>
-        <CursorPos X="36" Y="72"/>
-        <UsageCount Value="23"/>
+        <CursorPos X="95" Y="14"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -50,8 +49,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="unitDM"/>
         <EditorIndex Value="2"/>
-        <CursorPos X="75" Y="7"/>
-        <UsageCount Value="22"/>
+        <CursorPos X="48" Y="7"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -61,11 +60,18 @@
         <EditorIndex Value="3"/>
         <TopLine Value="40"/>
         <CursorPos X="102" Y="49"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="E:\lazarus\lcl\include\customform.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1860"/>
+        <CursorPos X="53" Y="1879"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="19">
+    <JumpHistory HistoryIndex="28">
       <Position>
         <Filename Value="unitprincipal.pas"/>
       </Position>
@@ -144,6 +150,42 @@
       <Position>
         <Filename Value="unitclientes.pas"/>
         <Caret Line="85" Column="17" TopLine="56"/>
+      </Position>
+      <Position>
+        <Filename Value="unitclientes.pas"/>
+        <Caret Line="87" Column="85" TopLine="74"/>
+      </Position>
+      <Position>
+        <Filename Value="unitclientes.pas"/>
+        <Caret Line="22" Column="51"/>
+      </Position>
+      <Position>
+        <Filename Value="unitclientes.pas"/>
+        <Caret Line="80" TopLine="63"/>
+      </Position>
+      <Position>
+        <Filename Value="unitclientes.pas"/>
+        <Caret Line="95" Column="43" TopLine="57"/>
+      </Position>
+      <Position>
+        <Filename Value="unitclientes.pas"/>
+        <Caret Line="81" Column="57" TopLine="64"/>
+      </Position>
+      <Position>
+        <Filename Value="unitclientes.pas"/>
+        <Caret Line="76" Column="34" TopLine="64"/>
+      </Position>
+      <Position>
+        <Filename Value="unitclientes.pas"/>
+        <Caret Line="69" Column="78" TopLine="61"/>
+      </Position>
+      <Position>
+        <Filename Value="unitclientes.pas"/>
+        <Caret Line="80" Column="53" TopLine="62"/>
+      </Position>
+      <Position>
+        <Filename Value="unitdm.pas"/>
+        <Caret Line="7" Column="75"/>
       </Position>
     </JumpHistory>
     <RunParams>
