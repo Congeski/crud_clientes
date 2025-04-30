@@ -1,0 +1,28 @@
+object DM: TDM
+  OldCreateOrder = False
+  Height = 205
+  HorizontalOffset = 256
+  VerticalOffset = 145
+  Width = 267
+  object ZConnection1: TZConnection
+    ControlsCodePage = cCP_UTF8
+    DisableSavepoints = False
+    HostName = 'localhost'
+    Port = 0
+    Database = 'E:\crud_cliente\BancoDeDados\PROJETO.FDB'
+    User = 'SYSDBA'
+    Password = 'masterkey'
+    Protocol = 'firebird'
+    Left = 40
+    Top = 43
+  end
+  object ZQuery1: TZQuery
+    Params = <>
+    Left = 144
+    Top = 43
+  end
+  object DataSource1: TDataSource
+    Left = 40
+    Top = 128
+  end
+end
