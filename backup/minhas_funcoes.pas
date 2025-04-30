@@ -10,6 +10,9 @@ uses
 procedure exibir_clientes(Query:TzQuery);
 procedure incluir_cliente(Query:TzQuery;Nome:String;Endereco:String;
                           Cid:String;UF:String);
+procedure alterar_cliente(Query:TzQuery;Nome:String;Endereco:String;
+                          Cid:String;UF:String; ID:integer);
+procedure excluir_cliente(Query:TzQuery, ID:Integer);
 
 implementation
 
@@ -36,6 +39,33 @@ begin
   Query.Params[3].AsString:= UF;
 
   Query.ExecSQL;
+end;
+
+procedure alterar_cliente(Query:TzQuery;Nome:String;Endereco:String;
+                          Cid:String;UF:String; ID:integer);
+begin
+  Query.Close;
+  Query.SQL.Clear;
+  Query.SQL.Add('UPDATE CLIENTE SET NOME=:NOME,ENDERECO=:ENDERECO,CIDADE=:CIDADE, ');
+  Query.SQL.Add('ESTADO=:ESTADO');
+  Query.SQL.Add('WHERE ID=:ID');
+
+  Query.Params[0].AsString:= Nome;
+  Query.Params[1].AsString:= Endereco;
+  Query.Params[2].AsString:= Cid;
+  Query.Params[3].AsString:= UF;
+  Query.Params[4].AsInteger:= ID;
+
+  Query.ExecSQL;
+end;
+
+procedure excluir_cliente(Query:TzQuery, ID:Integer);
+begin
+  Query.Close;
+  Query.SQL.Clear;
+  Query.SQL.Add(' DELETE FROM CLIENTE WHERE ID=:ID');
+
+  Query.Params[0].AsInteger:= ID;
 end;
 
 end.
