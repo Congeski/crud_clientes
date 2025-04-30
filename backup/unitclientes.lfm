@@ -1,16 +1,22 @@
 object FormClientes: TFormClientes
   Left = 308
-  Height = 409
+  Height = 283
   Top = 226
   Width = 533
+  Align = alCustom
+  BorderIcons = []
+  BorderStyle = bsSingle
   Caption = 'Cadastro de Clientes'
-  ClientHeight = 409
+  ClientHeight = 283
   ClientWidth = 533
+  OnActivate = FormActivate
+  OnCreate = FormCreate
+  OnShow = FormShow
   LCLVersion = '3.8.0.0'
   object Panel1: TPanel
     Left = 0
     Height = 57
-    Top = 352
+    Top = 226
     Width = 533
     Align = alBottom
     ClientHeight = 57
@@ -279,18 +285,141 @@ object FormClientes: TFormClientes
   end
   object pagina1: TPageControl
     Left = 0
-    Height = 352
+    Height = 226
     Top = 0
     Width = 533
     ActivePage = TabArquivo
     Align = alClient
+    Enabled = False
     TabIndex = 0
     TabOrder = 1
     object TabArquivo: TTabSheet
       Caption = 'Arquivo'
+      ClientHeight = 198
+      ClientWidth = 525
+      object DBGrid1: TDBGrid
+        Left = 0
+        Height = 198
+        Top = 0
+        Width = 525
+        Align = alClient
+        Color = clWindow
+        Columns = <>
+        DataSource = DM.DataSourceClientes
+        TabOrder = 0
+      end
     end
     object TabDados: TTabSheet
       Caption = 'Dados do Cliente'
+      ClientHeight = 198
+      ClientWidth = 525
+      object Label1: TLabel
+        Left = 40
+        Height = 15
+        Top = 32
+        Width = 14
+        Caption = 'ID:'
+      end
+      object Label2: TLabel
+        Left = 18
+        Height = 15
+        Top = 64
+        Width = 36
+        Caption = 'Nome:'
+      end
+      object Label3: TLabel
+        Left = 2
+        Height = 15
+        Top = 96
+        Width = 52
+        Caption = 'Endereço:'
+      end
+      object Label4: TLabel
+        Left = 14
+        Height = 15
+        Top = 128
+        Width = 40
+        Caption = 'Cidade:'
+      end
+      object Label5: TLabel
+        Left = 16
+        Height = 15
+        Top = 160
+        Width = 38
+        Caption = 'Estado:'
+      end
+      object EditID: TEdit
+        Left = 64
+        Height = 23
+        Top = 32
+        Width = 80
+        Enabled = False
+        TabOrder = 0
+      end
+      object EditNome: TEdit
+        Left = 64
+        Height = 23
+        Top = 64
+        Width = 440
+        Enabled = False
+        TabOrder = 1
+      end
+      object EditEndereco: TEdit
+        Left = 64
+        Height = 23
+        Top = 96
+        Width = 440
+        Enabled = False
+        TabOrder = 2
+      end
+      object EditCidade: TEdit
+        Left = 64
+        Height = 23
+        Top = 128
+        Width = 184
+        Enabled = False
+        TabOrder = 3
+      end
+      object ComboBoxUF: TComboBox
+        Left = 64
+        Height = 23
+        Top = 160
+        Width = 100
+        Enabled = False
+        ItemHeight = 15
+        ItemIndex = 0
+        Items.Strings = (
+          'AC'
+          'AL'
+          'AP'
+          'AM'
+          'BA'
+          'CE'
+          'DF'
+          'ES'
+          'GO'
+          'MA'
+          'MT'
+          'MS'
+          'MG'
+          'PA'
+          'PB'
+          'PR'
+          'PE'
+          'PI'
+          'RJ'
+          'RN'
+          'RS'
+          'RO'
+          'RR'
+          'SC'
+          'SP'
+          'SE'
+          'TO'
+        )
+        TabOrder = 4
+        Text = 'AC'
+      end
     end
   end
 end

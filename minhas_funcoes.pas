@@ -12,7 +12,7 @@ procedure incluir_cliente(Query:TzQuery;Nome:String;Endereco:String;
                           Cid:String;UF:String);
 procedure alterar_cliente(Query:TzQuery;Nome:String;Endereco:String;
                           Cid:String;UF:String; ID:integer);
-procedure excluir_cliente(Query:TzQuery, ID:Integer);
+procedure excluir_cliente(Query:TzQuery;ID:Integer);
 
 implementation
 
@@ -59,7 +59,7 @@ begin
   Query.ExecSQL;
 end;
 
-procedure excluir_cliente(Query:TzQuery, ID:Integer);
+procedure excluir_cliente(Query:TzQuery;ID:Integer);
 begin
   Query.Close;
   Query.SQL.Clear;

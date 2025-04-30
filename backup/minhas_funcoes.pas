@@ -12,7 +12,7 @@ procedure incluir_cliente(Query:TzQuery;Nome:String;Endereco:String;
                           Cid:String;UF:String);
 procedure alterar_cliente(Query:TzQuery;Nome:String;Endereco:String;
                           Cid:String;UF:String; ID:integer);
-procedure excluir_cliente(Query:TzQuery, ID:Integer);
+procedure excluir_cliente(Query:TzQuery;ID:Integer);
 
 implementation
 
@@ -66,6 +66,8 @@ begin
   Query.SQL.Add(' DELETE FROM CLIENTE WHERE ID=:ID');
 
   Query.Params[0].AsInteger:= ID;
+
+  Query.ExecSQL;
 end;
 
 end.
