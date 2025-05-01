@@ -112,6 +112,7 @@ object FormClientes: TFormClientes
         71F4C2884CF3CE9B63F3E6C080F3DEB478F3DEB579F3DEB578F3DEB576F3DDB4
         75F3DDB474F3E3B97AF6CF9954D9B86D260A0000000000000000
       }
+      OnClick = btAlterarClick
       TabOrder = 1
     end
     object btExcluir: TBitBtn
@@ -156,6 +157,7 @@ object FormClientes: TFormClientes
         00000A74179A0A7417D00A7417F30A7417FF0A7417FF0A7417FF0A7417FF0A74
         17FF0A7417FF0A7417ED0A7417C50A74178F0000000000000000
       }
+      OnClick = btExcluirClick
       TabOrder = 2
     end
     object btCancelar: TBitBtn
@@ -457,5 +459,11 @@ object FormClientes: TFormClientes
         Text = 'AC'
       end
     end
+  end
+  object DataSourceCli: TDataSource
+    DataSet = DM.ZQueryClientes
+    OnDataChange = DataSourceCliDataChange
+    Left = 115
+    Top = 116
   end
 end

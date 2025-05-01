@@ -2,13 +2,13 @@ object FormClientes: TFormClientes
   Left = 308
   Height = 283
   Top = 226
-  Width = 534
+  Width = 687
   Align = alCustom
   BorderIcons = []
   BorderStyle = bsSingle
   Caption = 'Cadastro de Clientes'
   ClientHeight = 283
-  ClientWidth = 534
+  ClientWidth = 687
   OnActivate = FormActivate
   OnCreate = FormCreate
   OnShow = FormShow
@@ -17,10 +17,10 @@ object FormClientes: TFormClientes
     Left = 0
     Height = 57
     Top = 226
-    Width = 534
+    Width = 687
     Align = alBottom
     ClientHeight = 57
-    ClientWidth = 534
+    ClientWidth = 687
     Color = clTeal
     ParentBackground = False
     ParentColor = False
@@ -112,6 +112,7 @@ object FormClientes: TFormClientes
         71F4C2884CF3CE9B63F3E6C080F3DEB478F3DEB579F3DEB578F3DEB576F3DDB4
         75F3DDB474F3E3B97AF6CF9954D9B86D260A0000000000000000
       }
+      OnClick = btAlterarClick
       TabOrder = 1
     end
     object btExcluir: TBitBtn
@@ -290,7 +291,7 @@ object FormClientes: TFormClientes
     Left = 0
     Height = 226
     Top = 0
-    Width = 534
+    Width = 687
     ActivePage = TabArquivo
     Align = alClient
     TabIndex = 0
@@ -298,13 +299,13 @@ object FormClientes: TFormClientes
     object TabArquivo: TTabSheet
       Caption = 'Arquivo'
       ClientHeight = 198
-      ClientWidth = 526
+      ClientWidth = 679
       OnShow = TabArquivoShow
       object DBGrid1: TDBGrid
         Left = 0
         Height = 198
         Top = 0
-        Width = 526
+        Width = 679
         Align = alClient
         Color = clWindow
         Columns = <        
@@ -341,13 +342,14 @@ object FormClientes: TFormClientes
             FieldName = 'ESTADO'
           end>
         DataSource = DM.DataSourceClientes
+        ReadOnly = True
         TabOrder = 0
       end
     end
     object TabDados: TTabSheet
       Caption = 'Dados do Cliente'
       ClientHeight = 198
-      ClientWidth = 526
+      ClientWidth = 679
       object Label1: TLabel
         Left = 40
         Height = 15
@@ -456,5 +458,11 @@ object FormClientes: TFormClientes
         Text = 'AC'
       end
     end
+  end
+  object DataSourceCli: TDataSource
+    DataSet = DM.ZQueryClientes
+    OnDataChange = DataSourceCliDataChange
+    Left = 115
+    Top = 116
   end
 end

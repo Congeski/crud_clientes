@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  Buttons, StdCtrls, DBGrids, unitDM, minhas_funcoes, LCLType;
+  Buttons, StdCtrls, DBGrids, unitDM, minhas_funcoes, DB, LCLType;
 
 type
 
@@ -20,6 +20,7 @@ type
     btGravar: TBitBtn;
     btSair: TBitBtn;
     ComboBoxUF: TComboBox;
+    DataSourceCli: TDataSource;
     DBGrid1: TDBGrid;
     EditNome: TEdit;
     EditCidade: TEdit;
@@ -34,10 +35,13 @@ type
     Panel1: TPanel;
     TabArquivo: TTabSheet;
     TabDados: TTabSheet;
+    procedure btAlterarClick(Sender: TObject);
     procedure btCancelarClick(Sender: TObject);
+    procedure btExcluirClick(Sender: TObject);
     procedure btGravarClick(Sender: TObject);
     procedure btIncluirClick(Sender: TObject);
     procedure btSairClick(Sender: TObject);
+    procedure DataSourceCliDataChange(Sender: TObject; Field: TField);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -46,6 +50,7 @@ type
     procedure Hab_botoes(Sender:TObject);
     procedure Desab_botoes(Sender:TObject);
     procedure TabArquivoShow(Sender: TObject);
+    procedure BancosParaInterface;
   private
 
   public
@@ -66,6 +71,11 @@ implementation
 procedure TFormClientes.btSairClick(Sender: TObject);
 begin
   FormClientes.Close;
+end;
+
+procedure TFormClientes.DataSourceCliDataChange(Sender: TObject; Field: TField);
+begin
+  BancosParaInterface;
 end;
 
 procedure TFormClientes.btIncluirClick(Sender: TObject);
@@ -90,10 +100,38 @@ begin
   HabilitarCampos(false);
 end;
 
+procedure TFormClientes.btExcluirClick(Sender: TObject);
+var
+  id_cliente:integer;
+begin
+  if (Application.MessageBox('Confirma Exclusão deste cliente? ', 'Exclusão',
+     Mb_YesNo + MB_ICONINFORMATION)) = idyes then
+  begin
+    id_cliente:= DM.ZQueryClientes.FieldByName('ID').AsInteger;
+    excluir_cliente(DM.ZQueryAux, id_cliente);
+  end;
+
+  exibir_clientes(DM.ZQueryClientes);
+  TabDados.TabVisible:= true;
+  TabArquivo.TabVisible:= true;
+  pagina1.ActivePage:= (TabArquivo);
+end;
+
+procedure TFormClientes.btAlterarClick(Sender: TObject);
+begin
+  TabArquivo.TabVisible:= false;
+  TabDados.TabVisible:= true;
+  pagina1.ActivePage:= (TabDados);
+  Desab_botoes(FormClientes);
+  situacao:= 2;
+  HabilitarCampos(true);
+  EditNome.SetFocus;
+end;
+
 procedure TFormClientes.btGravarClick(Sender: TObject);
 begin
-  if Application.MessageBox('Confirma a Inclusão deste Cliente?',
-  'Confirmação', Mb_YesNo + MB_ICONINFORMATION) = idyes then
+  if Application.MessageBox('Confirma a Inclusão ou Alteração deste Cliente?',
+     'Confirmação', Mb_YesNo + MB_ICONINFORMATION) = idyes then
   begin
     case situacao of
     1: // incluir novo registro
@@ -101,8 +139,13 @@ begin
         incluir_cliente(DM.ZQueryAux, EditNome.Text, EditEndereco.Text,
                          EditCidade.Text, ComboBoxUF.Text);
       end;
-    end; //case
-  end; //if
+    2: // alterar registro existente
+      begin
+        alterar_cliente(DM.ZQueryAux, EditNome.Text, EditEndereco.Text,
+                         EditCidade.Text, ComboBoxUF.Text, StrToInt(EditID.Text));
+      end;
+    end;
+  end;
 
   TabDados.TabVisible:= true;
   TabArquivo.TabVisible:= true;
@@ -179,6 +222,15 @@ begin
     ShowMessage('Erro ao acessar o banco de dados!');
     Exit;
   end;
+end;
+
+procedure TFormClientes.BancosParaInterface;
+begin
+  EditID.Text:= DM.ZQueryClientes.FieldByName('ID').AsString;
+  EditNome.Text:= DM.ZQueryClientes.FieldByName('NOME').AsString;
+  EditEndereco.Text:= DM.ZQueryClientes.FieldByName('ENDERECO').AsString;
+  EditCidade.Text:= DM.ZQueryClientes.FieldByName('CIDADE').AsString;
+  ComboBoxUF.Text:= DM.ZQueryClientes.FieldByName('ESTADO').AsString;
 end;
 
 end.
